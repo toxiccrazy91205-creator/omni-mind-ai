@@ -5,11 +5,12 @@ from dotenv import load_dotenv
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Load environment variables
-load_dotenv(BASE_DIR.parent / '.env', override=True)
-# Ensure deleted keys from .env are cleared from memory if the server hasn't been hard-restarted
-if 'GROQ_API_KEY' not in open(BASE_DIR.parent / '.env').read():
-    os.environ.pop('GROQ_API_KEY', None)
+# Load environment variables (only if .env exists)
+env_path = BASE_DIR.parent / '.env'
+if env_path.exists():
+    load_dotenv(env_path, override=True)
+    if 'GROQ_API_KEY' not in env_path.read_text():
+        os.environ.pop('GROQ_API_KEY', None)
 
 SECRET_KEY = 'django-insecure-9c2^6+8d6oeb@91t3-y2zm=g5(54r3wlo%v_&@)yr3=^mq7heq'
 DEBUG = os.environ.get('DEBUG', 'True') == 'True'
