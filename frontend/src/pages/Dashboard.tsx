@@ -19,10 +19,14 @@ export default function Dashboard() {
       <nav className="h-16 border-b border-hairline flex items-center px-8 justify-between">
         <div className="font-display text-xl tracking-tight">OmniMind</div>
         <div className="flex gap-4">
-          <Button variant="ghost" className="text-body hover:text-ink hover:bg-surface-elevated h-9 rounded-md">Settings</Button>
-          <Button className="bg-primary text-primary-foreground hover:bg-surface-light h-9 rounded-md font-medium tracking-wide px-4">
-            New Chat
-          </Button>
+          <Link to="/settings">
+            <Button variant="ghost" className="text-body hover:text-ink hover:bg-surface-elevated h-9 rounded-md">Settings</Button>
+          </Link>
+          <Link to="/agents/rag">
+            <Button className="bg-primary text-primary-foreground hover:bg-surface-light h-9 rounded-md font-medium tracking-wide px-4">
+              New Chat
+            </Button>
+          </Link>
         </div>
       </nav>
 
